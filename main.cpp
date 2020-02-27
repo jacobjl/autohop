@@ -1,12 +1,7 @@
 //Copyright (c) 2020 Jacob Large
 //This program is a fully external tool for assisting in bunnyhopping in all games based on the Orange Box engine.
 
-#include <windows.h>
-#include <stdio.h>
-#include <iostream>
-#include <cstring>
 #include "CProcess.h"
-#include <time.h>
 
 //Struct to store offsets, gamewindow, and game name
 struct offset
