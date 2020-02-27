@@ -1,6 +1,10 @@
 #include <windows.h>
 #include <tlhelp32.h>
 #include <tchar.h>
+#include <stdio.h>
+#include <iostream>
+#include <cstring>
+#include <time.h>
 
 class CProcess
 {
