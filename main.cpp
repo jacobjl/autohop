@@ -1,7 +1,12 @@
 //Copyright (c) 2020 Jacob Large
 //This program is a fully external tool for assisting in bunnyhopping in all games based on the Orange Box engine.
 
+#include <windows.h>
+#include <stdio.h>
+#include <iostream>
+#include <cstring>
 #include "CProcess.h"
+#include <time.h>
 
 //Struct to store offsets, gamewindow, and game name
 struct offset
@@ -81,7 +86,7 @@ bool onGround(offset addrs)
 bool isInWater(offset addrs)
 {
 	ReadProcessMemory(worker.hProcess, (LPVOID)(worker.dwEngine + addrs.WATER), &water, sizeof(water), 0);
-	return water > 0;
+	return water == 3;
 }
 //Function to check if the client is in spectate (only applies to CS:S and DOD:S)
 bool isSpectating(offset addrs)
@@ -108,20 +113,20 @@ void findGame(offset &addrs)
 			addrs.gameName = new char[strlen("Sven Co-op") + 1];
 			strcpy(addrs.gameName, "Sven Co-op");
 			addrs.game = FindWindow(NULL, addrs.gameName);
-			addrs.SPECTATING = 0x2F2B08;
-			addrs.ON_GROUND = 0x2EEB04;
-			addrs.OVERLAY = 0x14374C;
-			addrs.WATER = 0x5FAE6C;
+			addrs.SPECTATING = 0x34A530;
+			addrs.ON_GROUND = 0x34606C;
+			addrs.OVERLAY = 0x146670;
+			addrs.WATER = 0x34A54C;
 		}
 		else if (FindWindow(NULL, "Sven Co-op listen server - Sven Co-op"))
 		{
 			addrs.gameName = new char[strlen("Sven Co-op") + 1];
 			strcpy(addrs.gameName, "Sven Co-op");
 			addrs.game = FindWindow(NULL, "Sven Co-op listen server - Sven Co-op");
-			addrs.SPECTATING = 0x2F2B08;
-			addrs.ON_GROUND = 0x2EEB04;
-			addrs.OVERLAY = 0x14374C;
-			addrs.WATER = 0x5FAE6C;
+			addrs.SPECTATING = 0x34A530;
+			addrs.ON_GROUND = 0x34606C;
+			addrs.OVERLAY = 0x146670;
+			addrs.WATER = 0x34A54C;
 		}
 	}
 	std::cout << "Found game: " << addrs.gameName << std::endl;
